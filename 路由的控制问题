@@ -1,0 +1,188 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import home from '../views/report/home.vue'
+
+Vue.use(VueRouter)
+
+const routes = [{
+        path: '/',
+        redirect: '/report'
+    },
+    {
+        path: '/report',
+        name: 'report',
+        component: home
+    },
+    {
+        path: '/demo',
+        name: 'demo',
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/report/demo.vue'),
+    },
+    {
+        // iframe测试
+        path: '/_index_iframe',
+        name: '_index_iframe',
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/report/_index_iframe.vue'),
+    },
+    {
+        // iframe测试
+        path: '/_index_iframe22',
+        name: '_index_iframe22',
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/report/_index_iframe22.vue'),
+    },
+    {
+        // ppt管理页面
+        path: '/pptManage',
+        name: 'pptManage',
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/report/pptManage.vue'),
+        children: [{
+                path: '',
+                redirect: 'query'
+            },
+            {
+                path: 'query',
+                name: 'query',
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../components/report/pptManage/query.vue'),
+            },
+            {
+                path: 'add',
+                name: 'add',
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../components/report/pptManage/addorEdit.vue'),
+            },
+            {
+                path: 'edit',
+                name: 'edit',
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../components/report/pptManage/addorEdit.vue'),
+            },
+        ]
+    },
+    {
+        path: '/index',
+        name: 'index',
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/report/index.vue'),
+        children: [{
+                path: '',
+                redirect: 'overview'
+            },
+            {
+                path: 'overview',
+                name: 'overview',
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../components/report/overview/index.vue'),
+                children: [{
+                        path: '',
+                        redirect: 'firstTab'
+                    },
+                    {
+                        path: 'firstTab',
+                        name: 'firstTab',
+                        component: () =>
+                            import ( /* webpackChunkName: "about" */ '../components/report/overview/firstTab.vue'),
+                    },
+                    {
+                        path: 'secondTab',
+                        name: 'secondTab',
+                        component: () =>
+                            import ( /* webpackChunkName: "about" */ '../components/report/overview/secondTab.vue'),
+                    },
+                ]
+            },
+            {
+                path: 'risks',
+                name: 'risks',
+                component: () =>
+                    import ( /* webpackChunkName: "about" */ '../components/report/risks/index.vue'),
+                children: [{
+                        path: '',
+                        redirect: 'assetStructure'
+                    },
+                    {
+                        path: 'assetStructure',
+                        name: 'assetStructure',
+                        component: () =>
+                            import ( /* webpackChunkName: "about" */ '../components/report/risks/assetStructure.vue'),
+                        children: [{
+                                path: '',
+                                redirect: 'credit'
+                            },
+                            {
+                                path: 'credit',
+                                name: 'credit',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetStructure/credit/index.vue'),
+                            },
+                            {
+                                path: 'nonCredit',
+                                name: 'nonCredit',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetStructure/nonCredit/index.vue'),
+                            },
+                            {
+                                path: 'creditGoDown',
+                                name: 'creditGoDown',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetStructure/credit/creditGoDown.vue'),
+                            },
+                        ]
+                    },
+                    {
+                        path: 'assetQuality',
+                        name: 'assetQuality',
+                        component: () =>
+                            import ( /* webpackChunkName: "about" */ '../components/report/risks/assetQuality.vue'),
+                        children: [{
+                                path: '',
+                                redirect: 'whole/survey'
+                            },
+                            {
+                                path: 'whole/survey',
+                                name: 'survey',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetQuality/whole/survey/index.vue'),
+                            },
+                            {
+                                path: 'whole/loan',
+                                name: 'loan',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetQuality/whole/loan/index.vue'),
+                            },
+                            {
+                                path: 'toThePublic/book',
+                                name: 'book',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetQuality/toThePublic/book/index.vue'),
+                            },
+                            {
+                                path: 'toThePublic/credit',
+                                name: 'credit',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetQuality/toThePublic/credit/index.vue'),
+                            },
+                            {
+                                path: 'toThePublic/nonCredit',
+                                name: 'nonCredit',
+                                component: () =>
+                                    import ( /* webpackChunkName: "about" */ '../components/report/risks/assetQuality/toThePublic/nonCredit/index.vue'),
+                            },
+                        ]
+                    }
+                ]
+            },
+        ]
+    }
+]
+
+const router = new VueRouter({
+    linkActiveClass: 'nav-active',
+    routes
+})
+
+export default router
